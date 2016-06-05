@@ -12,6 +12,7 @@ import com.coloredcarrot.rightclickitempickup.executors.RCIPExecutor;
 import com.coloredcarrot.rightclickitempickup.listeners.PlayerInteractListener;
 import com.coloredcarrot.rightclickitempickup.listeners.PlayerPickupItemListener;
 import com.coloredcarrot.rightclickitempickup.nms.NMS;
+import com.coloredcarrot.rightclickitempickup.nms.NMSSetupResponse;
 
 public class RCIPPlugin
 extends JavaPlugin
@@ -24,8 +25,14 @@ extends JavaPlugin
 		RCIP.plugin = this;
 		
 		// Connect NMS
-		if (NMS.setup().isCompatible())
-			getLogger().info("[VersionManager] Hooked server version " + NMS.getVersion());
+		NMSSetupResponse nmsSetupResponse = NMS.setup();
+		if (nmsSetupResponse.isCompatible())
+			getLogger().info("[VersionManager] Hooked server version " + nmsSetupResponse.getVersion());
+		else
+		{
+			getLogger().warning("[VersionManager] Your server version (" + (nmsSetupResponse.getVersion() == null ? "UNKNOWN" : nmsSetupResponse.getVersion()) + ") is not compatible with RightClickItemPickup!");
+			getLogger().warning("[VersionManager] It is highly recommended that you upgrade the server and the RCIP plugin itself, because otherwise, some functions of this plugin may not work as intended or not at all.");
+		}
 		
 		// Load direct-pickup data
 		try { Wrapper.loadData(); }
