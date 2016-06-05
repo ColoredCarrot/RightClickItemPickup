@@ -48,8 +48,11 @@ implements Listener
 						foundItem = true;
 						
 						if (event.getPlayer().getInventory().addItem(((Item) e).getItemStack()).size() > 0)
+						{
 							// Inventory full
 							event.getPlayer().sendMessage(Configs.LANG.getString("inv-full", true));
+							break;
+						}
 						else
 						{
 							e.teleport(e.getLocation().subtract(0, event.getPlayer().getWorld().getMaxHeight() + 50, 0), TeleportCause.PLUGIN);
