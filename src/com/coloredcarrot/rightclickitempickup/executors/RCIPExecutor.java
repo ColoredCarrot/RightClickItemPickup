@@ -1,11 +1,11 @@
 package com.coloredcarrot.rightclickitempickup.executors;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.coloredcarrot.rightclickitempickup.cfg.Configs;
 import com.coloredcarrot.rightclickitempickup.data.Wrapper;
 
 public class RCIPExecutor
@@ -24,7 +24,7 @@ implements CommandExecutor
 			
 			if (!(sender instanceof Player))
 			{
-				sender.sendMessage(ChatColor.RED + "Only a player can perform that action!");
+				sender.sendMessage(Configs.LANG.getString("only-player", true));
 				return true;
 			}
 			
@@ -41,7 +41,7 @@ implements CommandExecutor
 				
 				Wrapper.setDirectPickupEnabled(player, false);
 				
-				player.sendMessage(ChatColor.GREEN + "Set item pick up mode to right-clicking");
+				player.sendMessage(Configs.LANG.getString("set-right-click", true));
 				
 			}
 			else if (args[0].equalsIgnoreCase("disable"))
@@ -55,7 +55,7 @@ implements CommandExecutor
 				
 				Wrapper.setDirectPickupEnabled(player, true);
 				
-				player.sendMessage(ChatColor.GREEN + "Set item pick up mode to default");
+				player.sendMessage(Configs.LANG.getString("set-default", true));
 				
 			}
 			else if (args[0].equalsIgnoreCase("toggle"))
@@ -68,7 +68,7 @@ implements CommandExecutor
 				
 			}
 			else
-				sender.sendMessage(ChatColor.RED + "Valid actions: enable, disable, toggle");
+				sender.sendMessage(Configs.LANG.getString("valid-actions", true));
 			
 		}
 		

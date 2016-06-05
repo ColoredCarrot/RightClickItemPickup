@@ -2,9 +2,7 @@ package com.coloredcarrot.rightclickitempickup.listeners;
 
 import java.util.Collection;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
@@ -16,7 +14,9 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
+import com.coloredcarrot.rightclickitempickup.cfg.Configs;
 import com.coloredcarrot.rightclickitempickup.data.Wrapper;
+import com.coloredcarrot.rightclickitempickup.nms.NMSCodeLibrary;
 
 public class PlayerInteractListener
 implements Listener
@@ -49,11 +49,13 @@ implements Listener
 						
 						if (event.getPlayer().getInventory().addItem(((Item) e).getItemStack()).size() > 0)
 							// Inventory full
-							event.getPlayer().sendMessage(ChatColor.RED + "Your inventory is full!");
+							event.getPlayer().sendMessage(Configs.LANG.getString("inv-full", true));
 						else
 						{
 							e.teleport(e.getLocation().subtract(0, event.getPlayer().getWorld().getMaxHeight() + 50, 0), TeleportCause.PLUGIN);
-							event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_ITEM_PICKUP, 1.0f, 1.0f);
+							//TODO Need to make this version compatible:
+							//event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.ENTITY_ITEM_PICKUP, 1.0f, 1.0f);
+							NMSCodeLibrary.playEntitySound(event.getPlayer(), event.getPlayer().getLocation(), "ITEM_PICKUP", 1.0f, 1.0f);
 						}
 						
 					}

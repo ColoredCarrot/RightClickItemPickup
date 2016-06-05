@@ -5,11 +5,13 @@ import java.util.logging.Level;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.coloredcarrot.rightclickitempickup.cfg.Configs;
 import com.coloredcarrot.rightclickitempickup.data.InvalidConfigurationException;
 import com.coloredcarrot.rightclickitempickup.data.Wrapper;
 import com.coloredcarrot.rightclickitempickup.executors.RCIPExecutor;
 import com.coloredcarrot.rightclickitempickup.listeners.PlayerInteractListener;
 import com.coloredcarrot.rightclickitempickup.listeners.PlayerPickupItemListener;
+import com.coloredcarrot.rightclickitempickup.nms.NMS;
 
 public class RCIPPlugin
 extends JavaPlugin
@@ -20,6 +22,10 @@ extends JavaPlugin
 	{
 		
 		RCIP.plugin = this;
+		
+		// Connect NMS
+		if (NMS.setup().isCompatible())
+			getLogger().info("[VersionManager] Hooked server version " + NMS.getVersion());
 		
 		// Load direct-pickup data
 		try { Wrapper.loadData(); }
@@ -41,6 +47,9 @@ extends JavaPlugin
 		
 		// Register command executors
 		RCIP.registerCommandExecutor("rcip", new RCIPExecutor());
+		
+		// Load configs
+		Configs.loadAll();
 		
 		RCIP.info("Enabled RightClickItemPickup v" + RCIP.getVersion());
 		
