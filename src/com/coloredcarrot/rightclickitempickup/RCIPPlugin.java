@@ -13,6 +13,7 @@ import com.coloredcarrot.rightclickitempickup.listeners.PlayerInteractListener;
 import com.coloredcarrot.rightclickitempickup.listeners.PlayerPickupItemListener;
 import com.coloredcarrot.rightclickitempickup.nms.NMS;
 import com.coloredcarrot.rightclickitempickup.nms.NMSSetupResponse;
+import com.coloredcarrot.rightclickitempickup.tab_completion.RCIPTabCompleter;
 
 public class RCIPPlugin
 extends JavaPlugin
@@ -54,6 +55,9 @@ extends JavaPlugin
 		
 		// Register command executors
 		RCIP.registerCommandExecutor("rcip", new RCIPExecutor());
+		
+		// Register tab completers
+		RCIP.registerTabCompleter("rcip", new RCIPTabCompleter());
 		
 		// Load configs
 		Configs.loadAll();

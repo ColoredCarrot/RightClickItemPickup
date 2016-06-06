@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.logging.Level;
 
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.event.Listener;
 
 public class RCIP
@@ -59,6 +60,11 @@ public class RCIP
 	protected static void registerCommandExecutor(String name, CommandExecutor executor)
 	{
 		plugin.getCommand(name).setExecutor(executor);
+	}
+	
+	protected static void registerTabCompleter(String name, TabCompleter tabCompleter)
+	{
+		plugin.getCommand(name).setTabCompleter(tabCompleter);
 	}
 	
 }

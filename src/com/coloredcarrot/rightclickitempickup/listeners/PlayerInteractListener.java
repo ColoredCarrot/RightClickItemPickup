@@ -1,6 +1,8 @@
 package com.coloredcarrot.rightclickitempickup.listeners;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -21,6 +23,8 @@ import com.coloredcarrot.rightclickitempickup.nms.NMSCodeLibrary;
 public class PlayerInteractListener
 implements Listener
 {
+	
+	public static final List<Material> AIR_BLOCKS = Arrays.asList(Material.AIR, Material.ACACIA_DOOR, Material.BIRCH_DOOR, Material.DARK_OAK_DOOR, Material.IRON_DOOR, Material.JUNGLE_DOOR, Material.SPRUCE_DOOR, Material.TRAP_DOOR, Material.WOOD_DOOR, Material.WOODEN_DOOR, Material.RAILS, Material.ACTIVATOR_RAIL, Material.DETECTOR_RAIL, Material.POWERED_RAIL, Material.ANVIL, Material.BANNER, Material.BED, Material.BED_BLOCK, Material.CROPS, Material.BEETROOT, Material.BEETROOT_BLOCK, Material.FENCE, Material.FENCE_GATE, Material.ACACIA_FENCE, Material.ACACIA_FENCE_GATE, Material.BIRCH_FENCE, Material.BIRCH_FENCE_GATE, Material.DARK_OAK_FENCE, Material.DARK_OAK_FENCE_GATE, Material.IRON_FENCE, Material.JUNGLE_FENCE, Material.JUNGLE_FENCE_GATE, Material.NETHER_FENCE, Material.SPRUCE_FENCE, Material.SPRUCE_FENCE_GATE, Material.BREWING_STAND, Material.BRICK_STAIRS, Material.ACACIA_STAIRS, Material.BIRCH_WOOD_STAIRS, Material.COBBLESTONE_STAIRS, Material.DARK_OAK_STAIRS, Material.JUNGLE_WOOD_STAIRS, Material.NETHER_BRICK_STAIRS, Material.QUARTZ_STAIRS, Material.RED_SANDSTONE_STAIRS, Material.SANDSTONE_STAIRS, Material.SMOOTH_STAIRS, Material.SPRUCE_WOOD_STAIRS, Material.WOOD_STAIRS, Material.WATER, Material.WATER_LILY, Material.STATIONARY_WATER, Material.LAVA, Material.STATIONARY_LAVA, Material.CAKE_BLOCK, Material.CARPET, Material.CHEST, Material.ENDER_CHEST, Material.TRAPPED_CHEST);
 
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onPlayerInteract(PlayerInteractEvent event)
@@ -33,7 +37,7 @@ implements Listener
 			
 			Block iblock = event.getClickedBlock().getLocation().add(0, 1, 0).getBlock();
 			
-			if (iblock == null || iblock.getType() != Material.AIR)
+			if (iblock == null || !AIR_BLOCKS.contains(iblock.getType()))
 				return;
 			
 			Collection<Entity> entities = event.getPlayer().getWorld().getNearbyEntities(iblock.getLocation(), 0.9d, 0.9d, 0.9d);
