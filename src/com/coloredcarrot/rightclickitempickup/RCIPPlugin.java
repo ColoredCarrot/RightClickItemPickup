@@ -11,6 +11,7 @@ import com.coloredcarrot.rightclickitempickup.data.Wrapper;
 import com.coloredcarrot.rightclickitempickup.executors.RCIPExecutor;
 import com.coloredcarrot.rightclickitempickup.listeners.PlayerInteractListener;
 import com.coloredcarrot.rightclickitempickup.listeners.PlayerPickupItemListener;
+import com.coloredcarrot.rightclickitempickup.mc_version_manager.MCVersionManager;
 import com.coloredcarrot.rightclickitempickup.nms.NMS;
 import com.coloredcarrot.rightclickitempickup.nms.NMSSetupResponse;
 import com.coloredcarrot.rightclickitempickup.tab_completion.RCIPTabCompleter;
@@ -49,6 +50,9 @@ extends JavaPlugin
 			RCIP.shutdown("An exception occured while trying to load data.yml, the plugin will be disabled.");
 			return;
 		}
+		
+		// Initialize MCVersionManager
+		MCVersionManager.detectVersion();
 		
 		// Register listeners
 		RCIP.registerListeners(new PlayerPickupItemListener(), new PlayerInteractListener());

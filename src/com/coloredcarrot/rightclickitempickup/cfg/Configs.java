@@ -11,10 +11,15 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.coloredcarrot.rightclickitempickup.RCIP;
+import com.coloredcarrot.rightclickitempickup.enumerations.PickupMode;
 
 public enum Configs
 {
 
+	CONFIG("config.yml",
+			Arrays.asList("default-pickup-mode"),
+			Arrays.asList(PickupMode.RIGHT_CLICK)),
+	
 	LANG("lang.yml",
 			Arrays.asList("only-player", "set-right-click", "set-default", "valid-actions", "inv-full"),
 			Arrays.asList("&cOnly a player can perform that action!", "&aSet item pick up mode to right-clicking", "&aSet item pick up mode to default", "&cValid actions: &oenable, disable, toggle", "&cYour inventory is full!"));
@@ -53,6 +58,14 @@ public enum Configs
 			RCIP.getPlugin().saveResource(name, false);
 		
 		yaml = YamlConfiguration.loadConfiguration(file);
+		
+	}
+	
+	public PickupMode getPickupMode(String path)
+	{
+		
+		try { return PickupMode.valueOf(yaml.getString(path).toUpperCase()); }
+		catch (IllegalArgumentException | NullPointerException e) { return (PickupMode) defaults.get(path); }
 		
 	}
 	
