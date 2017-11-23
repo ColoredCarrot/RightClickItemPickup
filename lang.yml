@@ -1,0 +1,5 @@
+only-player: "&cOnly a player can perform that action!"
+set-right-click: "&aSet item pick up mode to right-clicking"
+set-default: "&aSet item pick up mode to default"
+valid-actions: "&cValid actions: &oenable, disable, toggle"
+inv-full: "&cYour inventory is full!"

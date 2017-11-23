@@ -1,0 +1,12 @@
+#########################################
+#                                       #
+#  This is the configuration file       #
+#  for RightClickItemPickup             #
+#                                       #
+#  DO NOT USE TABS!                     #
+#                                       #
+#########################################
+
+# What the default pickup mode is for newly joined players
+# Valid options: DEFAULT, RIGHT_CLICK
+default-pickup-mode: RIGHT_CLICK
